@@ -10,7 +10,7 @@ cd nt_framework
 pip install -r requirements.txt
 python ntf.py
 ```
-# What can it do
+# What can it do?
 <ul>
   <li>WHOIS search even on Tajik websites</li>
   <li>Scan for open ports on your network</li>
