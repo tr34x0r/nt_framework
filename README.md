@@ -20,3 +20,10 @@ python ntf.py
 <kbd> 
   <img src="https://user-images.githubusercontent.com/124523839/218281812-98128200-9767-42d5-b981-ea7938699b3e.PNG">
 </kbd>
+
+<h3> More functionalities will be added to the script soon </h3>
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
+
+
