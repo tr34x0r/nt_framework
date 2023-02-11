@@ -10,3 +10,13 @@ cd nt_framework
 pip install -r requirements.txt
 python ntf.py
 ```
+# What can it do
+<ul>
+  <li>WHOIS search even on Tajik websites</li>
+  <li>Scan for open ports on your network</li>
+  <li>Show how many devices are up</li>
+</ul>
+
+<kbd> 
+  <img src="https://user-images.githubusercontent.com/124523839/218281812-98128200-9767-42d5-b981-ea7938699b3e.PNG">
+</kbd>
