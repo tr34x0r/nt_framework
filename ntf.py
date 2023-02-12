@@ -1,35 +1,54 @@
+# -*- coding: utf-8 -*-
+import readline
 import sys
 import atexit
 import subprocess
 import os
 import requests
 import socket
-from bs4 import BeautifulSoup
 import colorama
+from linux_commands import ls, clr, ip_conf, pc_info
+from bs4 import BeautifulSoup
+from tabulate import tabulate
 
+"""---------TAP-SUPPORT---------"""
+readline.parse_and_bind('tab: complete')
+
+"""---------HISTORY-SUPPORT---------"""
+histfile = ".history"
+try:
+    readline.read_history_file(histfile)
+except FileNotFoundError:
+    pass
+atexit.register(readline.write_history_file, histfile)
+
+
+"""---------ROOT---------"""
+if os.geteuid() != 0:
+    print(colorama.Fore.RED + " You need root privileges! " + colorama.Fore.RESET)
+    exit(1)
+
+"""---------MAC---------"""
 def change_mac():
     interface = input("Enter the name of the network interface you want to change the MAC address for: ")
     os.system(f"macchanger -r {interface}")
     print(f"Changed MAC address for {interface}.")
 
+"""---------TOR-OFF---------"""
 def turn_off_tor():
     status = os.popen("systemctl is-active tor").read().strip()
-    if status == "active":
+    if status == "active": 
         os.system("systemctl stop tor")
         print("Tor service" + colorama.Fore.RED + " killed." + colorama.Fore.RESET)
     else:
-        print("Tor is already off.")
-
+        os.system("rm -rf .history && echo Logs and other stuff cleared!")
 atexit.register(turn_off_tor)
 
-if os.geteuid() != 0:
-    print(colorama.Fore.RED + "This script must be run as root." + colorama.Fore.RESET)
-    exit(1)
-
+"""---------TOR---------"""
 def tor():
     os.system("systemctl start tor")
 
-
+"""---------SCAP---------"""
 def scap():
     arp_scan = os.popen("arp-scan -l").read()
     ip_addresses = arp_scan.split("\n")[2:-3]
@@ -42,13 +61,9 @@ def scap():
             if response == 0:
                 open_ports.append((ip, port))
                 print("{} has port {} open".format(colorama.Fore.YELLOW + ip + colorama.Fore.RESET, colorama.Fore.RED + str(port) + colorama.Fore.RESET))
-   
-                
 
-
+"""---------WHOIS---------"""
 def whois(domain):
-    if domain == "back":
-        menu()
     if domain.endswith(".tj"):
         domain = domain.replace(".tj", "")
         try:
@@ -62,41 +77,42 @@ def whois(domain):
                 if "registration date" in line.lower():
                     end = i
                     break
-            return "\n\n" + "\n".join(lines[start:end+1]) + "\n"
+            print(f"Results for {domain}:")
+            print("------------------")
+            print("\n".join(lines[start:end+1]))
         except requests.exceptions.RequestException as e:
-            return "An error occurred while retrieving whois information"
+            print("An error occurred while retrieving whois information")
     else:
         cmd = "whois " + domain
         try:
-            return subprocess.check_output(cmd, shell=True).decode()
+            print(subprocess.check_output(cmd, shell=True).decode())
         except subprocess.CalledProcessError as e:
             if e.returncode == 1:
-                return "This TLD has no whois server"
+                print("This TLD has no whois server")
             else:
                 raise
 
-
+"""---------PING---------"""
 def ping(domain):
     if domain == "back":
         menu()
-    cmd = "ping -c 1 " + domain
+    cmd = "ping -c 3 " + domain
     try:
         result = subprocess.check_output(cmd, shell=True).decode()
         if "Unreachable" in result:
             return f"The {domain} ({socket.gethostbyname(domain)}) is unreachable"
         else:
-            return f"1 ping sent to {domain} ({socket.gethostbyname(domain)})"
+            return f"3 ping sent to {domain} ({socket.gethostbyname(domain)})"
     except subprocess.CalledProcessError as e:
         if e.returncode == 1:
-            return "The host might be down"
+            return "The host might be deivown"
         else:
             if e.returncode == 2:
                 return "An error occurred while trying to ping the domain"
             else:
                 raise
 
-
-
+"""---------MENU---------"""
 def menu():
     colorama.init()
     output = subprocess.check_output(["ifconfig | grep 'inet.*192' | awk '{print $2}'"], shell=True).decode("utf-8")
@@ -104,7 +120,7 @@ def menu():
     prompt = f"{colorama.Fore.RED}{socket.gethostname()}{colorama.Fore.RESET}@{colorama.Fore.GREEN}{local_ip}{colorama.Fore.RESET} > "
     while True:
         command = input(prompt)
-        if command.startswith("whois"):
+        if command == "whois" or command == "WHOIS":
             if len(command.split()) > 1:
                 domain = command.split()[1]
                 result = whois(domain)
@@ -114,17 +130,14 @@ def menu():
                 colorama.Fore.RESET
                 result = whois(domain)
                 print(result)
-        
-        elif command == "scap":
+        elif command == "scap" or command == "SCAP":
             scap()
-
-        elif command == "tor":
+        elif command == "tor" or command == "TOR":
             tor()
-        
-        elif command == "mac":
-            change_mac()    
-                
-        elif command.startswith("ping"):
+        elif command == "mac" or command == "MAC":
+            change_mac()  
+        #---------PING---------#
+        elif command == "ping" or command == "PING":
             if len(command.split()) > 1:
                 domain = command.split()[1]
                 result = ping(domain)
@@ -134,46 +147,83 @@ def menu():
                 colorama.Fore.RESET
                 result = ping(domain)
                 print(result)
-        elif command == "show":
+        #---------IP---------#
+        elif command == "publip" or command == "PUBLIP":
             try:
                 result = subprocess.check_output("curl -s icanhazip.com", shell=True).decode().strip()
                 print("Your public IP is: " + colorama.Fore.YELLOW + result + colorama.Fore.RESET)
             except subprocess.CalledProcessError as e:
                 print("An error occurred while retrieving your public IP")
-        elif command == "devices":
+        #---------DEVICES---------#
+        elif command == "devices" or command == "DEVICES":
             try:
                 result = subprocess.check_output('arp-scan -l | grep -v "Starting" | grep -v "Interface" | grep -v "packets" | grep -v "received" | grep -v "Ending"', shell=True).decode().strip()
                 print("Devices connected to the same network:\n")
                 print(result + "\n")
             except subprocess.CalledProcessError as e:
                 print("An error occurred while scanning the network for connected devices")
-         
-          
-        elif command == "exit":
+        #---------MENU-HELP---------#
+        elif command == "help" or command == "HELP" or command == "?":
+            print("")
+            print("|=====================================================|")
+            print("\tCommand".ljust(20),"Description")
+            print("|=====================================================|")
+            print(" WHOIS [domain]".ljust(20),"| Check domain information")
+            print("|-----------------------------------------------------|")
+            print(" PING [domain]".ljust(20),"| Test connection to a domain")
+            print("|-----------------------------------------------------|")
+            print(" PUBLIP".ljust(20),"| Show public IP address")
+            print("|-----------------------------------------------------|")
+            print(" DEVICES".ljust(20),"| Show connected network devices")
+            print("|-----------------------------------------------------|")
+            print(" SCAP".ljust(20),"| Scan for open ports in network")
+            print("|-----------------------------------------------------|")
+            print(" TOR".ljust(20),"| Start tor services")
+            print("|-----------------------------------------------------|")
+            print(" MAC".ljust(20),"| Change Mac Address")
+            print("|-----------------------------------------------------|")
+            print(" INFO".ljust(20),"| System info")
+            print("|=====================================================|")
+            print("".ljust(15),"Linux Command")
+            print("|=====================================================|")
+            print(" CLEAR".ljust(20),"| Clear terminal")
+            print("|-----------------------------------------------------|")
+            print(" LS".ljust(20),"| List current director")
+            print("|-----------------------------------------------------|")
+            print(" IPCONFIG".ljust(20),"| List ip configuration")
+            print("|=====================================================|")
+            print(" BACK".ljust(20),"| Go back to previous menu")
+            print("|-----------------------------------------------------|")
+            print(" EXIT".ljust(20),"| Exit program")
+            print("|=====================================================|")
+            print("")
+        #---------LINUX-COMMANDS---------#
+        elif command == "clear" or command == "CLEAR":
+            clr()
+        elif command == "ifconfig" or command == "IFCONFIG":
+            ip_conf()
+        elif command == "info" or command == "INFO":
+            pc_info()
+        elif command == "ls" or command == "LS":
+            ls()
+        #---------EXIT---------#
+        elif command == "exit" or command == "quit":
+            clr()
+            os.system("echo OBSERVER YOUR SECURITY!")
             break
-        elif command == "help":
-            print("Available commands:")
-            print("whois [domain]")
-            print("ping [domain]")
-            print("show - Show my public ip")
-            print("devices - Show devices that are connected to the same network)")
-            print("scap - Scan for most vulnerable open ports in the network")
-            print("tor - Start tor services")
-            print("mac - Change your Mac Address")
-            print("back")
-            print("exit")
-        elif command == "back":
+        elif command == "back" or command == "BACK":
             print("You are already in the menu.")
+        elif command == "":
+            print("Command not typed")
         else:
             print("Invalid command")
 
-
-
+#---------BANNER---------#
 os.system("clear")
 print(colorama.Fore.YELLOW)
 os.system("figlet 'Network Testing Framework' -c -f small | sed 's/\[31m/\\\033\\\[31;1m/g'")
 print(colorama.Fore.RESET)
-print("Welcome to Network Testing Framework" + colorama.Fore.BLUE + " @cyberdome.tj" + colorama.Fore.RESET)
-print("Type 'help' to see the list of commands")
+print("Welcome to Network Testing Framework" + " by " + colorama.Fore.BLUE + "@cyberdome.tj" + colorama.Fore.RESET)
+print("Type 'help' or '?' to see the list of commands")
 
 menu()
