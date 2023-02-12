@@ -31,6 +31,7 @@ python ntf.py
 <li>НАЗАД – вернуться в предыдущее меню.</li>
 <li>ВЫХОД – выход из программы</li>
 </ul><br>
+
 # Скриншот
 <kbd>
    <img src="https://user-images.githubusercontent.com/109206637/218330244-6067987b-b398-405e-ae94-6bef6f13cf74.png">
