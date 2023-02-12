@@ -36,7 +36,8 @@ python ntf.py
 <kbd>
    <img src="https://user-images.githubusercontent.com/109206637/218330244-6067987b-b398-405e-ae94-6bef6f13cf74.png">
 </kbd>
-
+<br>
+<h3>Создан <a href="https://github.com/tr34x0r"> tr34x0r</a> -ом</h3>
 <h3> Вы также можете изменить этот скрипт! </h3>
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
