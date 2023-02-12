@@ -68,6 +68,7 @@ def whois(domain):
         domain = domain.replace(".tj", "")
         try:
             response = requests.get(f"http://www.nic.tj/cgi/whois2?domain={domain}")
+            response.encoding = response.apparent_encoding
             soup = BeautifulSoup(response.text, 'html.parser')
             result = soup.get_text()
             lines = result.split("\n")
