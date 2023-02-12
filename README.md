@@ -1,8 +1,8 @@
 # Network Testing Framework &nbsp;
 
-A simple script aimed for blue-teaming to quickly discover most usual vulnerable open ports in a network infrastracture, and much more. 
+Скрипт преднозначен для blue teaming-а.
 
-# Installation
+# Установка
 
 ```
 git clone https://github.com/cyberdome-tj/nt_framework
@@ -11,22 +11,32 @@ cd nt_framework
 pip install -r requirements.txt
 python ntf.py
 ```
-# What can it do?
+# Команды
 <ul>
-  <li>WHOIS search even on Tajik websites</li>
-  <li>Scan for open ports on your network</li>
-  <li>Show how many devices are up</li>
-  <li>Show public ip address</li>
-  <li>PC info</li>
-  <li>Change MAC address</li>
-  <li>Start TOR service</li>
+<li>WHOIS [домен] — проверить информацию о домене</li>
+<li>PING [домен] – проверить подключение к домену.</li>
+<li>PUBLIP — Показать общедоступный IP-адрес</li>
+<li>УСТРОЙСТВА – показать подключенные сетевые устройства.</li>
+<li>SCAP – поиск открытых портов в сети.</li>
+<li>TOR — Запуск tor-сервисов</li>
+<li>MAC – изменить адрес Mac</li>
+<li>INFO — Информация о системе</li>
 </ul>
 
-<kbd> 
-  <img src="https://user-images.githubusercontent.com/109206637/218330244-6067987b-b398-405e-ae94-6bef6f13cf74.png">
+# Команды Linux
+<ul>
+<li>CLEAR — Очистить терминал</li>
+<li>LS — Список текущего директора</li>
+<li>IPCONFIG — Список IP-конфигураций</li>
+<li>НАЗАД – вернуться в предыдущее меню.</li>
+<li>ВЫХОД – выход из программы</li>
+</ul><br>
+# Скриншот
+<kbd>
+   <img src="https://user-images.githubusercontent.com/109206637/218330244-6067987b-b398-405e-ae94-6bef6f13cf74.png">
 </kbd>
 
-<h3> You can also modify this script! </h3>
+<h3> Вы также можете изменить этот скрипт! </h3>
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
