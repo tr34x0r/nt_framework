@@ -190,7 +190,7 @@ def menu():
             print("|-----------------------------------------------------|")
             print(" LS".ljust(20),"| List current director")
             print("|-----------------------------------------------------|")
-            print(" IPCONFIG".ljust(20),"| List ip configuration")
+            print(" IFCONFIG".ljust(20),"| List ip configuration")
             print("|=====================================================|")
             print(" BACK".ljust(20),"| Go back to previous menu")
             print("|-----------------------------------------------------|")
@@ -207,6 +207,8 @@ def menu():
         elif command == "ls" or command == "LS":
             ls()
         #---------EXIT---------#
+        elif command == "banner" or command == "BANNER":                                                                                                                                                                                                                                                                                                
+            banner()
         elif command == "exit" or command == "quit":
             clr()
             os.system("echo OBSERVER YOUR SECURITY!")
@@ -220,9 +222,11 @@ def menu():
 
 #---------BANNER---------#
 os.system("clear")
-print(colorama.Fore.YELLOW)
-os.system("figlet 'Network Testing Framework' -c -f small | sed 's/\[31m/\\\033\\\[31;1m/g'")
-print(colorama.Fore.RESET)
+def banner():
+    print(colorama.Fore.YELLOW)
+    os.system("figlet 'Network Testing Framework' -c -f small | sed 's/\[31m/\\\033\\\[31;1m/g'")
+    print(colorama.Fore.RESET)
+banner()
 print("Welcome to Network Testing Framework" + " by " + colorama.Fore.BLUE + "@cyberdome.tj" + colorama.Fore.RESET)
 print("Type 'help' or '?' to see the list of commands")
 
