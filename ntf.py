@@ -106,7 +106,7 @@ def ping(domain):
             return f"3 ping sent to {domain} ({socket.gethostbyname(domain)})"
     except subprocess.CalledProcessError as e:
         if e.returncode == 1:
-            return "The host might be deivown"
+            return "The host might be down"
         else:
             if e.returncode == 2:
                 return "An error occurred while trying to ping the domain"
@@ -175,9 +175,9 @@ def menu():
             print("|-----------------------------------------------------|")
             print(" PUBLIP".ljust(20),"| Show public IP address")
             print("|-----------------------------------------------------|")
-            print(" DEVICES".ljust(20),"| Show connected network devices")
+            print(" DEVICES".ljust(20),"| Show connected to the same network devices")
             print("|-----------------------------------------------------|")
-            print(" SCAP".ljust(20),"| Scan for open ports in network")
+            print(" SCAP".ljust(20),"| Scan for open ports in devices on same network")
             print("|-----------------------------------------------------|")
             print(" TOR".ljust(20),"| Start tor services")
             print("|-----------------------------------------------------|")
@@ -189,7 +189,7 @@ def menu():
             print("|=====================================================|")
             print(" CLEAR".ljust(20),"| Clear terminal")
             print("|-----------------------------------------------------|")
-            print(" LS".ljust(20),"| List current director")
+            print(" LS".ljust(20),"| List current directory")
             print("|-----------------------------------------------------|")
             print(" IFCONFIG".ljust(20),"| List ip configuration")
             print("|=====================================================|")
@@ -212,7 +212,7 @@ def menu():
             banner()
         elif command == "exit" or command == "quit":
             clr()
-            os.system("echo OBSERVER YOUR SECURITY!")
+            os.system("echo OBSERVE YOUR SECURITY!")
             break
         elif command == "back" or command == "BACK":
             print("You are already in the menu.")
