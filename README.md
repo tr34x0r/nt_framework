@@ -9,7 +9,18 @@ cd nt_framework
 sudo bash install.sh
 sudo ntf
 ```
-
+# Installation for MacOS
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install git
+git clone https://github.com/cyberdome-tj/nt_framework
+brew install acrogenesis/macchanger/macchanger
+brew install python arp-scan figlet neofetch systemc
+sudo pip3 install tabulate requests colorama bs4
+cd nt_framework
+sudo pip3 install -r requirements.txt
+sudo python3 ntf.py
+```
 # Команды:
 <ul>
    <li> <a href="https://itigic.com/ru/what-is-whois-and-what-is-it-for/">whois</a> - поиск информации о домене (включая .tj из сайта <a href="http://www.nic.tj/whois.html">nic.tj</a>)</li>
