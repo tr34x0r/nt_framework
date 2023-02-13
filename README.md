@@ -11,6 +11,19 @@ cd nt_framework
 pip install -r requirements.txt
 python ntf.py
 ```
+# Installation for MacOS
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install git
+git clone https://github.com/cyberdome-tj/nt_framework
+brew install acrogenesis/macchanger/macchanger
+brew install python arp-scan figlet neofetch systemc
+brew update
+sudo pip3 install tabulate requests colorama bs4
+cd nt_framework
+sudo pip3 install -r requirements.txt
+sudo python3 ntf.py
+```
 # What can it do?
 <ul>
   <li>WHOIS search even on Tajik websites</li>
