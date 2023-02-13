@@ -4,6 +4,7 @@
 
 ## Установка на Linux/Debian
 ```
+sudo apt instal git
 git clone https://github.com/cyberdome-tj/nt_framework
 cd nt_framework
 sudo bash install.sh
@@ -16,7 +17,6 @@ brew install git
 git clone https://github.com/cyberdome-tj/nt_framework
 brew install acrogenesis/macchanger/macchanger
 brew install python arp-scan figlet neofetch systemc
-sudo pip3 install tabulate requests colorama bs4
 cd nt_framework
 sudo pip3 install -r requirements.txt
 sudo python3 ntf.py
