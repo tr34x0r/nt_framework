@@ -11,7 +11,7 @@ from linux_commands import ls, clr, ip_conf, pc_info
 from bs4 import BeautifulSoup
 from tabulate import tabulate
 
-"""---------TAP-SUPPORT---------"""
+"""---------TAB-SUPPORT---------"""
 readline.parse_and_bind('tab: complete')
 
 """---------HISTORY-SUPPORT---------"""
