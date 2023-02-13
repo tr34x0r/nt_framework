@@ -2,7 +2,7 @@
 
 Первый наш сетевой фреймворк. Скрипт преднозначен для blue teaming-а. Каждый может отправить pull request внеся свои идеи в этот скрипт и стать частью создателей этого фреймворка !
 
-## Установка на Linux/Debian
+## Установка на Linux/Debian <img src="https://www.freepnglogos.com/uploads/linux-png/linux-tux-logo-png-transparent-svg-vector-bie-supply-14.png" height="40" width="40">
 ```
 sudo apt install git
 git clone https://github.com/cyberdome-tj/nt_framework
@@ -10,7 +10,7 @@ cd nt_framework
 sudo bash install.sh
 sudo ntf
 ```
-# Installation on MacOS 
+# Installation on MacOS <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png" height="40" width="40">
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install git
