@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo apt-get install macchanger figlet arp-scan neofetch netcat -y && pip3 install -r requirements.txt && pip3 install pyinstaller && pyinstaller --onefile ntf.py && sudo cp dist/ntf /usr/bin/ && sudo chmod +x /usr/bin/ntf && clear && echo "DONE! Write 'sudo ntf' to start program."
