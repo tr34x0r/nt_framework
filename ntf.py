@@ -38,7 +38,7 @@ def change_mac():
 def turn_off_tor():
     status = os.popen("systemctl is-active tor").read().strip()
     if status == "active": 
-        os.system("systemctl stop tor")
+        os.system("systemctl stop tor && systemctl disable tor")
         print("Tor service" + colorama.Fore.RED + " killed." + colorama.Fore.RESET)
     else:
         os.system("rm -rf .history && echo Logs and other stuff cleared!")
@@ -46,7 +46,7 @@ atexit.register(turn_off_tor)
 
 """---------TOR---------"""
 def tor():
-    os.system("systemctl start tor")
+    os.system("systemctl enable tor && systemctl start tor && echo TOR service enabled!")
 
 """---------SCAP---------"""
 def scap():
