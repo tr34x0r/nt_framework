@@ -19,10 +19,7 @@ git clone https://github.com/cyberdome-tj/nt_framework
 brew install acrogenesis/macchanger/macchanger
 brew install python arp-scan figlet neofetch systemc
 brew update
-sudo pip3 install tabulate
-sudo pip3 install requests
-sudo pip3 install colorama
-sudo pip3 install bs4
+sudo pip3 install tabulate requests colorama bs4
 cd nt_framework
 sudo pip3 install -r requirements.txt
 sudo python3 ntf.py
