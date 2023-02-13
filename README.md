@@ -5,16 +5,15 @@
 ## Установка на Linux/Debian
 ```
 git clone https://github.com/cyberdome-tj/nt_framework
-sudo apt-get install macchanger figlet arp-scan neofetch netcat -y
 cd nt_framework
-pip install -r requirements.txt
-python ntf.py
+sudo bash install.sh
+sudo ntf
 ```
 
 # Команды:
 <ul>
    <li> <a href="https://itigic.com/ru/what-is-whois-and-what-is-it-for/">whois</a> - поиск информации о домене (включая .tj из сайта <a href="http://www.nic.tj/whois.html">nic.tj</a>)</li>
-   <li> publip - показать публичный IP адрес устройства из <a href="https://icanhazip.com">icanhazip</a></li>
+   <li>publip - показать публичный IP адрес устройства из <a href="https://icanhazip.com">icanhazip</a></li>
    <li>ping - проверить соединение домена. Отправляет 3 заросов ICMP</li>
    <li>tor - включить TOR сервис</li>
    <li>mac - изменить MAC адрес интерфейса. (ens33, wlan0 и другие)</li>
