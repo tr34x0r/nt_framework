@@ -4,13 +4,13 @@
 
 ## Установка на Linux/Debian
 ```
-sudo apt instal git
+sudo apt install git
 git clone https://github.com/cyberdome-tj/nt_framework
 cd nt_framework
 sudo bash install.sh
 sudo ntf
 ```
-# Installation for MacOS
+# Installation on MacOS 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install git
