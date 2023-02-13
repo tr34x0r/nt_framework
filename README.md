@@ -17,12 +17,8 @@ python ntf.py
 brew install git
 git clone https://github.com/cyberdome-tj/nt_framework
 brew install acrogenesis/macchanger/macchanger
-brew install python
+brew install python arp-scan figlet neofetch systemc
 brew update
-brew install arp-scan
-brew install figlet
-brew install neofetch
-brew install systemc
 sudo pip3 install tabulate
 sudo pip3 install requests
 sudo pip3 install colorama
