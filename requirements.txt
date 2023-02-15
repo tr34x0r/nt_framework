@@ -2,3 +2,5 @@ requests
 beautifulsoup4
 colorama
 readline
+awscli 
+python3-nmap
