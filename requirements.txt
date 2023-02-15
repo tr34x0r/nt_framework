@@ -4,3 +4,5 @@ colorama
 readline
 awscli 
 python3-nmap
+python-nmap
+tabulate
