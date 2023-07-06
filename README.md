@@ -10,10 +10,10 @@ cd nt_framework
 sudo bash install.sh
 sudo ntf
 ```
-# Installation on MacOS <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png" height="40" width="40">
+# Установка на MacOS <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png" height="40" width="40">
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install git
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"#### Установка Homebrew (если имеется то пропустить) 
+brew install git### Установка git (если имеется пропустить)
 git clone https://github.com/cyberdome-tj/nt_framework
 brew install acrogenesis/macchanger/macchanger
 brew install python arp-scan figlet neofetch systemc
