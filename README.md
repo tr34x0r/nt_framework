@@ -12,8 +12,8 @@ sudo ntf
 ```
 # Установка на MacOS <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png" height="40" width="40">
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"#### Установка Homebrew (если имеется то пропустить) 
-brew install git### Установка git (если имеется пропустить)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  Установка Homebrew (если имеется то пропустить) 
+brew install git   Установка git (если имеется пропустить)
 git clone https://github.com/cyberdome-tj/nt_framework
 brew install acrogenesis/macchanger/macchanger
 brew install python arp-scan figlet neofetch systemc
